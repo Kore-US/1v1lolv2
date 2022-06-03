@@ -1,0 +1,62 @@
+function isRetinaDisplay() {
+    if (window.matchMedia) {
+        var mq = window.matchMedia("only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 2.6/2), only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen  and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 1.3dppx)");
+        return (mq && mq.matches || (window.devicePixelRatio > 1));
+    }
+}
+
+$(document).ready(function () {
+
+    var returnObj = JSON.parse(localStorage.getItem("myVotes")) //спарсим его обратно объект
+    var checkVote = $.inArray(window.location.pathname, returnObj);
+    var gameUri = window.location.pathname;
+
+
+
+
+    if (isRetinaDisplay() == true)
+        $("#logo").attr('src', '/style/img/logo_x2.png');
+
+    $(".my-rating").starRating({
+        starSize: 25,
+        useFullStars: true,
+        callback: function(currentRating, $el){
+            if (returnObj == null) {
+                var obj = [gameUri];
+                var serialObj = JSON.stringify(obj); //сериализуем его
+                localStorage.setItem("myVotes", serialObj); //запишем его в хранилище по ключу "myKey"
+                addVote(gameUri, currentRating);
+            } else {
+                returnObj.push(gameUri);
+                var serialObj = JSON.stringify(returnObj); //сериализуем его
+                localStorage.setItem("myVotes", serialObj); //запишем его в хранилище по ключу "myKey"
+                addVote(gameUri);
+            }
+
+        }
+    });
+
+    if (checkVote != -1) {
+        $(".my-rating").starRating('setReadOnly', true);
+    }
+
+
+});
+
+
+function addVote(uri, currentRating) {
+    $.ajax({
+        method: 'POST',
+        url: '/addvote',
+        data: {
+            'uri': uri,
+            'rate': currentRating
+        },
+        success: function (res) {
+            $('#numVotes').text(res);
+        }
+    });
+}
+
+
+

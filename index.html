@@ -1,0 +1,81 @@
+
+<!-- saved from url=(0054)https://unblockedgamesboo.com/webgl/1v1-lol/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <title>1v1.LOL</title>
+    <link rel="shortcut icon" href="https://unblockedgamesboo.com/webgl/1v1-lol/style/favicon.ico">
+    <link rel="stylesheet" href="./style(1).css">
+	<script src="./adinLoader.js.download"></script>
+	<script src="./UnityLoader.js.download"></script>
+    <script src="./UnityProgress.js.download"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "build.php", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
+    </script>
+  <script>
+    var aiptag = aiptag || {};
+    aiptag.cmd = aiptag.cmd || [];
+    aiptag.cmd.display = aiptag.cmd.display || [];
+    aiptag.cmd.player = aiptag.cmd.player || [];
+    </script><script src="./jquery.min.js(1).download"></script><link rel="stylesheet" href="./style(2).css"><script src="./tag.min.js(1).download" async=""></script></head>
+  <body><div id="preroll"></div><div id="adsCode" style="position: absolute; z-index: 9999; background-color: black; color: lightyellow; width: 100%; height: 100%; padding: 0px; margin: 0px;"><div class="maindiv"><button class="button" type="button" id="startGame">Play</button></div></div>
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 100%; height: 95%; margin: 0px; padding: 0px; border: 0px; position: relative; background: rgb(0, 0, 0);"><canvas id="#canvas" style="width: 100%; height: 100%; cursor: default;" width="884" height="626"></canvas><div class="logo Dark" style="display: none;"></div><div class="progress Dark" style="display: none;"><div class="empty" style="width: 0%;"></div><div class="full" style="width: 100%;"></div></div></div>
+	  <div class="footer">
+            <div class="webgl-logo"></div>
+	            <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+	            <div class="title">1v1.LOL</div>
+	        </div>
+    </div>
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+	<script src="./firebase-app.js.download"></script>
+
+	<!-- Add Firebase products that you want to use -->
+	<script src="./firebase-auth.js.download"></script>
+	<script src="./firebase-firestore.js.download"></script>
+	<script src="./firebase-remote-config.js.download"></script>
+
+	<script src="./firebase.js.download"></script>
+	<script src="./login.js.download"></script>
+	<script src="./firebase-config.js.download"></script>
+	
+	<script>
+		initializeFireBase();
+		initRemoteConfig();
+		
+		window.unityInstance = gameInstance;
+		function showAds() {
+			console.log("show ads");
+        }
+
+		function requestNewAd(){
+		// Show video ad
+		unityAdFinishedCallback();
+		
+		}
+
+		function unityAdFinishedCallback(){
+		try{
+			if(gameInstance)
+				gameInstance.SendMessage('MainMenuManagers', 'OnWebCallback');
+		}
+		catch(error){
+			console.log(error);
+		}
+	}
+		function onUnityReady() {
+
+					sendConfig();
+				}
+	</script>
+	  <script>
+          if (typeof getAdinDomain !== 'undefined') {
+              const bodyTag = document.getElementsByTagName('body')[0];
+
+              let addAdinPreroll = document.createElement('script');
+              addAdinPreroll.src = getAdinDomain;
+              bodyTag.appendChild(addAdinPreroll);
+          }
+  </script><script src="./adinGameLoader.js.download"></script>
+  
+<script src="blob:https://unblockedgamesboo.com/8a66f993-dff4-45db-8370-4794c64f2f15" id="59d401eb584a00c2b8735d6f894faa95"></script></body></html>
